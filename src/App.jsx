@@ -15,17 +15,20 @@ export default function Page() {
       "Are you sure, Shweta? 🥺",
       "Really sure, Jenny? 💔",
       "Think again, my love! 🥰",
-      "I will never hurt you anymore! 😇",
-      "Let me show how much I love you! 🥺",
+      "I will protect you always! 😇",
+      "I will never make you sad 🥺",
+      "I'll always put a smile on your face! 🥰",
+      "You are the most beautiful girl in the world! 🌎",
+      "I don't want Arshia, I want only YOU! 🥀",
+      "You are my beauty standards! 🥺",
+      "My first and last thought is only you 😭",
       "Shweta, please? 🤧",
-      "I promise I can make you happy! 🥰",
       "Don't do this to us, Jenny! 🤕",
       "I'm sorry, give me a chance! 😭",
       "Have a heart, Shweta! 🥀",
       "I'll cherish you forever! 😇",
       "Just one chance for Jenny? 🥺",
       "My heart belongs to you! 🥰",
-      "I love you more than anything! 😭",
       "Please reconsider, Shweta? 🤕",
       "You're breaking my heart 💔",
       "Jenny, don't leave me hanging! 🥀",
@@ -35,7 +38,7 @@ export default function Page() {
     return phrases[Math.min(noCount, phrases.length - 1)];
   };
 
-  // The collection of your 18 new photos for the gallery
+  // Your collection of photos
   const memoryImages = [
     "https://image2url.com/r2/default/images/1769963613310-807ebe9c-fc6e-4b2d-af18-66d0f03c86c0.jpg",
     "https://image2url.com/r2/default/images/1769963667266-4290e4f4-6ad4-43b8-a5b7-46946364de48.jpg",
@@ -58,75 +61,105 @@ export default function Page() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center pt-4 min-h-screen bg-pink-50 selection:bg-rose-600 selection:text-white text-zinc-900 overflow-y-auto">
-      {yesPressed ? (
-        <>
-          <img src="https://media.tenor.com/uFYlyy-VBT0AAAAM/hug-love.gif" />
-          <div className="text-4xl md:text-6xl font-bold my-4">
-            Ok Yayyyyy!!!
-          </div>
-        </>
-      ) : (
-        <>
-          {/* Main Hero Section */}
-          <div className="flex flex-col items-center justify-center min-h-[80vh]">
-            <img
-              className="h-[230px] rounded-lg shadow-lg mb-8"
-              src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
-              alt="Main memory"
-            />
-            <h1 className="text-4xl md:text-6xl my-4 text-center px-4">
-              Jenny, will you be my Valentine?
-            </h1>
-            <div className="flex flex-wrap justify-center gap-2 items-center">
-              <button
-                className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
-                style={{ fontSize: yesButtonSize }}
-                onClick={() => setYesPressed(true)}
-              >
-                Yes
-              </button>
-              <button
-                onClick={handleNoClick}
-                className=" bg-rose-500 hover:bg-rose-600 rounded-lg text-white font-bold py-2 px-4"
-              >
-                {noCount === 0 ? "No" : getNoButtonText()}
-              </button>
-            </div>
-          </div>
+    <>
+      <style>
+        {`
+          @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-scroll {
+            animation: scroll 40s linear infinite;
+          }
+        `}
+      </style>
 
-          {/* Memory Lane Gallery - Aesthetic Masonry Grid */}
-          <div className="w-full max-w-5xl px-4 py-12">
-            <h2 className="text-3xl font-bold text-center text-rose-500 mb-8 font-serif">
-              Our Beautiful Memories 💖
-            </h2>
-            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-              {memoryImages.map((src, index) => (
-                <div key={index} className="break-inside-avoid">
-                  <img
-                    className="w-full rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
-                    src={src}
-                    alt={`Memory ${index + 1}`}
-                  />
-                </div>
-              ))}
+      <div className="overflow-hidden flex flex-col items-center justify-center min-h-screen bg-pink-50 selection:bg-rose-600 selection:text-white text-zinc-900">
+        {yesPressed ? (
+          <>
+            <img src="https://media.tenor.com/uFYlyy-VBT0AAAAM/hug-love.gif" />
+            <div className="text-4xl md:text-6xl font-bold my-4">
+              Ok Yayyyyy!!!
             </div>
-          </div>
-        </>
-      )}
-      <Footer />
-    </div>
+          </>
+        ) : (
+          <>
+            {/* Top Section */}
+            <div className="flex-grow flex flex-col items-center justify-center mt-8">
+              <img
+                className="h-[230px] rounded-lg shadow-lg"
+                src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
+              />
+              <h1 className="text-4xl md:text-6xl my-4 text-center">
+                Jenny Will you be my Valentine?
+              </h1>
+              <div className="flex flex-wrap justify-center gap-2 items-center">
+                <button
+                  className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
+                  style={{ fontSize: yesButtonSize }}
+                  onClick={() => setYesPressed(true)}
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={handleNoClick}
+                  className=" bg-rose-500 hover:bg-rose-600 rounded-lg text-white font-bold py-2 px-4"
+                >
+                  {noCount === 0 ? "No" : getNoButtonText()}
+                </button>
+              </div>
+            </div>
+
+            {/* Bottom Film Strip */}
+            <div className="w-full mt-12 mb-8 overflow-hidden relative">
+              <h2 className="text-center text-rose-400 font-serif mb-4 text-sm tracking-widest">
+                OUR MEMORY LANE 💖
+              </h2>
+              {/* This inner container holds 2 sets of images for seamless looping */}
+              <div className="flex w-max animate-scroll">
+                {/* First Set */}
+                <div className="flex gap-4 px-4">
+                  {memoryImages.map((src, index) => (
+                    <img
+                      key={index}
+                      src={src}
+                      className="h-32 md:h-48 w-auto rounded-md shadow-md object-cover border-2 border-white"
+                      alt={`Memory ${index}`}
+                    />
+                  ))}
+                </div>
+                {/* Second Set (Duplicate for Loop) */}
+                <div className="flex gap-4 px-4">
+                  {memoryImages.map((src, index) => (
+                    <img
+                      key={`dup-${index}`}
+                      src={src}
+                      className="h-32 md:h-48 w-auto rounded-md shadow-md object-cover border-2 border-white"
+                      alt={`Memory Duplicate ${index}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        <Footer />
+      </div>
+    </>
   );
 }
 
 const Footer = () => {
   return (
     <a
-      className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300 text-xs text-rose-400"
+      className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300 text-xs"
       href="https://github.com/Xeven777/valentine"
       target="__blank"
     >
-      Made with <span role="img" aria-label="heart">❤️</span>
+      Made with{" "}
+      <span role="img" aria-label="heart">
+        ❤️
+      </span>
     </a>
   );
 };
