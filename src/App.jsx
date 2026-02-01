@@ -32,10 +32,19 @@ export default function Page() {
       "Please reconsider, Shweta? 🤕",
       "You're breaking my heart 💔",
       "Jenny, don't leave me hanging! 🥀",
-      "Plsss? I love you so much 🤧😭"
+      "Plsss? I love you so much 🤧😭",
+      "Pretty please with a cherry on top? 🍒🥺",
+      "But I love you sooooo much! 💖😭",
+      "Look into my eyes... 🥺✨",
+      "I'll buy you chocolates! 🍫🍬",
+      "I'll give you unlimited hugs! 🫂🧸",
+      "You're my favorite person! 🌟💞",
+      "Don't be a meanie! 😣💔",
+      "My heart is crying! 😿💧"
     ];
 
-    return phrases[Math.min(noCount, phrases.length - 1)];
+    // The % symbol makes it loop endlessly
+    return phrases[noCount % phrases.length];
   };
 
   // Your collection of photos
@@ -74,28 +83,37 @@ export default function Page() {
         `}
       </style>
 
-      <div className="overflow-hidden flex flex-col items-center justify-center min-h-screen bg-pink-50 selection:bg-rose-600 selection:text-white text-zinc-900">
+      {/* Main Container with Background Image */}
+      <div 
+        className="overflow-hidden flex flex-col items-center justify-center min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900"
+        style={{
+          backgroundImage: "url('https://static.vecteezy.com/system/resources/thumbnails/016/348/270/small/tunnel-of-concentric-hearts-romantic-cute-background-pink-aesthetic-hearts-backdrop-illustration-vector.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
         {yesPressed ? (
           <>
             <img src="https://media.tenor.com/uFYlyy-VBT0AAAAM/hug-love.gif" />
-            <div className="text-4xl md:text-6xl font-bold my-4">
+            <div className="text-4xl md:text-6xl font-bold my-4 text-center text-rose-600 drop-shadow-md">
               Ok Yayyyyy!!!
             </div>
           </>
         ) : (
           <>
             {/* Top Section */}
-            <div className="flex-grow flex flex-col items-center justify-center mt-8">
+            <div className="flex-grow flex flex-col items-center justify-center mt-8 p-4">
               <img
-                className="h-[230px] rounded-lg shadow-lg"
+                className="h-[230px] rounded-lg shadow-xl border-4 border-white"
                 src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
               />
-              <h1 className="text-4xl md:text-6xl my-4 text-center">
+              <h1 className="text-4xl md:text-6xl my-4 text-center font-bold text-rose-600 drop-shadow-sm bg-white/30 backdrop-blur-sm p-4 rounded-xl">
                 Jenny, will you be my Valentine?
               </h1>
               <div className="flex flex-wrap justify-center gap-2 items-center">
                 <button
-                  className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
+                  className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4 shadow-lg transition-all duration-150`}
                   style={{ fontSize: yesButtonSize }}
                   onClick={() => setYesPressed(true)}
                 >
@@ -103,16 +121,16 @@ export default function Page() {
                 </button>
                 <button
                   onClick={handleNoClick}
-                  className=" bg-rose-500 hover:bg-rose-600 rounded-lg text-white font-bold py-2 px-4"
+                  className=" bg-rose-500 hover:bg-rose-600 rounded-lg text-white font-bold py-2 px-4 shadow-lg"
                 >
-                  {noCount === 0 ? "No" : getNoButtonText()}
+                  {getNoButtonText()}
                 </button>
               </div>
             </div>
 
             {/* Bottom Film Strip */}
-            <div className="w-full mt-12 mb-8 overflow-hidden relative">
-              <h2 className="text-center text-rose-400 font-serif mb-4 text-sm tracking-widest">
+            <div className="w-full mt-12 mb-8 overflow-hidden relative bg-white/20 backdrop-blur-sm py-4">
+              <h2 className="text-center text-rose-500 font-serif mb-4 text-sm tracking-widest font-bold">
                 OUR MEMORY LANE 💖
               </h2>
               {/* This inner container holds 2 sets of images for seamless looping */}
