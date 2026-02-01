@@ -1,6 +1,4 @@
 import { useState } from "react";
-import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
-import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
 
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
@@ -13,25 +11,25 @@ export default function Page() {
 
   const getNoButtonText = () => {
     const phrases = [
-      "No",
-      "Are you sure?",
-      "Really sure?",
-      "Think again!",
-      "Last chance!",
-      "Surely not?",
-      "You might regret this!",
-      "Give it another thought!",
-      "Are you absolutely certain?",
-      "This could be a mistake!",
-      "Have a heart!",
-      "Don't be so cold!",
-      "Change of heart?",
-      "Wouldn't you reconsider?",
-      "Is that your final answer?",
-      "You're breaking my heart ;(",
-      "Is that your final answer?",
-      "You're breaking my heart ;(",
-      "Plsss? :( You're breaking my heart",
+      "No 🥀",
+      "Are you sure, Shweta? 🥺",
+      "Really sure, Jenny? 💔",
+      "Think again, my love! 🥰",
+      "I will never hurt you anymore! 😇",
+      "Let me show how much I love you! 🥺",
+      "Shweta, please? 🤧",
+      "I promise I can make you happy! 🥰",
+      "Don't do this to us, Jenny! 🤕",
+      "I'm sorry, give me a chance! 😭",
+      "Have a heart, Shweta! 🥀",
+      "I'll cherish you forever! 😇",
+      "Just one chance for Jenny? 🥺",
+      "My heart belongs to you! 🥰",
+      "I love you more than anything! 😭",
+      "Please reconsider, Shweta? 🤕",
+      "You're breaking my heart 💔",
+      "Jenny, don't leave me hanging! 🥀",
+      "Plsss? I love you so much 🤧😭"
     ];
 
     return phrases[Math.min(noCount, phrases.length - 1)];
@@ -41,27 +39,20 @@ export default function Page() {
     <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
       {yesPressed ? (
         <>
-          <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
+          <img src="https://media.tenor.com/uFYlyy-VBT0AAAAM/hug-love.gif" />
           <div className="text-4xl md:text-6xl font-bold my-4">
             Ok Yayyyyy!!!
           </div>
         </>
       ) : (
         <>
-          <img
-            src={lovesvg}
-            className="fixed animate-pulse top-10 md:left-24 left-6 md:w-40 w-28"
-          />
-          <img
-            src={lovesvg2}
-            className="fixed bottom-16 -z-10 animate-pulse md:right-24 right-10 md:w-40 w-32"
-          />
+          {/* Main Image */}
           <img
             className="h-[230px] rounded-lg shadow-lg"
-            src="https://gifdb.com/images/high/cute-Love-bear-roses-ou7zho5oosxnpo6k.gif"
+            src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
           />
           <h1 className="text-4xl md:text-6xl my-4 text-center">
-            Will you be my Valentine?
+            Jenny Will you be my Valentine?
           </h1>
           <div className="flex flex-wrap justify-center gap-2 items-center">
             <button
