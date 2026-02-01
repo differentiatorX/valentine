@@ -74,81 +74,87 @@ export default function Page() {
           @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap');
           .font-hand { font-family: 'Pacifico', cursive; }
           .font-cursive { font-family: 'Dancing Script', cursive; }
+          
+          /* Smooth floating animation for the background photos */
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+          }
+          .animate-float {
+            animation: float 5s ease-in-out infinite;
+          }
         `}
       </style>
 
+      {/* BACKGROUND LAYER: The Photos surround the center */}
       <div 
-        className="min-h-screen text-zinc-900 bg-cover bg-center overflow-y-auto"
+        className="fixed inset-0 overflow-hidden bg-cover bg-center z-0"
         style={{
           backgroundImage: "url('https://static.vecteezy.com/system/resources/thumbnails/016/348/270/small/tunnel-of-concentric-hearts-romantic-cute-background-pink-aesthetic-hearts-backdrop-illustration-vector.jpg')",
         }}
       >
-        <div className="min-h-screen bg-black/10 backdrop-blur-[2px] flex flex-col items-center py-10">
+        {/* A grid of photos covering the whole screen behind the question */}
+        <div className="absolute inset-0 grid grid-cols-3 md:grid-cols-6 gap-2 p-2 opacity-60 overflow-y-auto">
+           {memoryImages.map((src, index) => (
+             <div 
+               key={index} 
+               className={`rounded-lg overflow-hidden shadow-sm border border-white/50 animate-float`}
+               style={{ animationDelay: `${index * 0.2}s` }} // Staggered animation
+             >
+               <img src={src} className="w-full h-full object-cover" alt="memory" />
+             </div>
+           ))}
+        </div>
+        
+        {/* A pink overlay to make text readable */}
+        <div className="absolute inset-0 bg-pink-100/30 backdrop-blur-[2px]"></div>
+      </div>
+
+      {/* FOREGROUND LAYER: The Question Card (Centered & Fixed) */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none">
+        
+        {/* The Card needs pointer-events-auto so buttons work */}
+        <div className="pointer-events-auto bg-white/70 backdrop-blur-xl border-2 border-white p-8 rounded-3xl shadow-2xl max-w-md mx-4 text-center transform hover:scale-105 transition duration-300">
           
           {yesPressed ? (
-            <div className="flex flex-col items-center justify-center h-screen">
-              <img src="https://media.tenor.com/uFYlyy-VBT0AAAAM/hug-love.gif" className="rounded-xl shadow-2xl" />
-              <div className="text-4xl md:text-6xl font-bold my-4 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] font-hand animate-bounce">
+            <>
+              <img src="https://media.tenor.com/uFYlyy-VBT0AAAAM/hug-love.gif" className="rounded-xl shadow-lg mx-auto" />
+              <div className="text-4xl md:text-6xl font-bold my-4 text-rose-600 drop-shadow-md font-hand animate-bounce">
                 Ok Yayyyyy!!! ❤️
               </div>
-            </div>
+            </>
           ) : (
             <>
-              {/* --- CARD SECTION --- */}
-              <div className="bg-white/30 backdrop-blur-md border border-white/50 p-8 rounded-3xl shadow-2xl max-w-md w-full mx-4 text-center transform hover:scale-105 transition duration-500">
-                <img
-                  className="h-[230px] w-full object-cover rounded-xl shadow-lg mb-6 border-4 border-white"
-                  src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
-                  alt="Main Memory"
-                />
-                <h1 className="text-4xl md:text-5xl font-bold text-rose-600 mb-6 font-hand drop-shadow-sm leading-tight">
-                  Jenny, will you be my Valentine?
-                </h1>
-                
-                <div className="flex flex-col gap-4 items-center w-full">
-                  <button
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 w-full"
-                    style={{ fontSize: yesButtonSize }}
-                    onClick={() => setYesPressed(true)}
-                  >
-                    Yes 💖
-                  </button>
-                  <button
-                    onClick={handleNoClick}
-                    className="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 w-full"
-                  >
-                    {getNoButtonText()}
-                  </button>
-                </div>
-              </div>
-
-              {/* --- PINTEREST GRID SECTION --- */}
-              <div className="w-full max-w-6xl mt-16 px-4">
-                <div className="bg-white/40 backdrop-blur-sm rounded-3xl p-6 md:p-10 shadow-xl">
-                  <h2 className="text-center text-rose-600 text-3xl md:text-4xl font-cursive mb-8 font-bold drop-shadow-sm">
-                    Our Beautiful Memory Lane 📸
-                  </h2>
-                  
-                  {/* Masonry Grid Layout */}
-                  <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-                    {memoryImages.map((src, index) => (
-                      <div key={index} className="break-inside-avoid relative group">
-                        <img
-                          className="w-full rounded-2xl shadow-md border-2 border-white/80 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-xl"
-                          src={src}
-                          alt={`Memory ${index}`}
-                        />
-                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <img
+                className="h-[230px] w-full object-cover rounded-xl shadow-lg mb-6 border-4 border-white mx-auto"
+                src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
+                alt="Main Memory"
+              />
+              <h1 className="text-4xl md:text-5xl font-bold text-rose-600 mb-6 font-hand drop-shadow-sm leading-tight">
+                Jenny, will you be my Valentine?
+              </h1>
+              
+              <div className="flex flex-col gap-4 items-center w-full">
+                <button
+                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 w-full"
+                  style={{ fontSize: yesButtonSize }}
+                  onClick={() => setYesPressed(true)}
+                >
+                  Yes 💖
+                </button>
+                <button
+                  onClick={handleNoClick}
+                  className="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 w-full"
+                >
+                  {getNoButtonText()}
+                </button>
               </div>
             </>
           )}
-          
-          <Footer />
         </div>
+        
+        <Footer />
       </div>
     </>
   );
@@ -157,7 +163,7 @@ export default function Page() {
 const Footer = () => {
   return (
     <a
-      className="fixed bottom-2 right-2 backdrop-blur-md bg-white/30 p-2 rounded-lg border border-white/50 text-xs text-rose-700 font-bold shadow-sm hover:bg-white/50 transition-colors"
+      className="fixed bottom-2 right-2 pointer-events-auto bg-white/50 backdrop-blur-md p-2 rounded-lg border border-white/50 text-xs text-rose-700 font-bold shadow-sm hover:bg-white/80 transition-colors"
       href="https://github.com/Xeven777/valentine"
       target="__blank"
     >
