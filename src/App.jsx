@@ -91,7 +91,7 @@ export default function Page() {
                 src="https://image2url.com/r2/default/images/1769960634734-9c784939-7089-4d10-b150-a4c6a375c74a.jpg"
               />
               <h1 className="text-4xl md:text-6xl my-4 text-center">
-                Jenny Will you be my Valentine?
+                Jenny, will you be my Valentine?
               </h1>
               <div className="flex flex-wrap justify-center gap-2 items-center">
                 <button
