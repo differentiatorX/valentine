@@ -1,9 +1,42 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
+  
   const yesButtonSize = noCount * 20 + 16;
+
+  // Attempt to autoplay music on load
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.4; // Set volume to 40% so it's not too loud
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsMusicPlaying(true);
+          })
+          .catch((error) => {
+            console.log("Autoplay prevented by browser (user must interact first)");
+            setIsMusicPlaying(false);
+          });
+      }
+    }
+  }, []);
+
+  const handleMusicToggle = () => {
+    if (audioRef.current) {
+      if (isMusicPlaying) {
+        audioRef.current.pause();
+        setIsMusicPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsMusicPlaying(true);
+      }
+    }
+  };
 
   const handleNoClick = () => {
     setNoCount(noCount + 1);
@@ -115,6 +148,21 @@ export default function Page() {
         `}
       </style>
 
+      {/* Hidden Audio Element */}
+      <audio 
+        ref={audioRef} 
+        src="https://image2url.com/r2/default/audio/1770020413972-efbefe9b-5b3d-43e0-8e73-73de47875864.mp3" 
+        loop 
+      />
+
+      {/* Music Toggle Button (Fixed Top-Right) */}
+      <button
+        onClick={handleMusicToggle}
+        className="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all transform hover:scale-110 border border-rose-200"
+      >
+        {isMusicPlaying ? "🎵 Playing" : "🔇 Play Music"}
+      </button>
+
       {/* Main Container with Background Image */}
       <div 
         className="overflow-hidden flex flex-col items-center justify-center min-h-screen selection:bg-rose-600 selection:text-white text-zinc-900"
@@ -203,7 +251,7 @@ const Footer = () => {
   return (
     <a
       className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300 text-xs"
-      href="https://www.instagram.com/madhur.xd/"
+      href="https://instagram.com/madhur.xd"
       target="__blank"
     >
       Made with{" "}
