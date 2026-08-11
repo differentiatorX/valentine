@@ -52,7 +52,7 @@ export default function Page() {
       "I will never make you sad 🥺",
       "I'll always put a smile on your face! 🥰",
       "You are the most beautiful girl in the world! 🌎",
-      "I don't want Arshia, I want only YOU! 🥀",
+      "I don't want ANYONE, I want only YOU! 🥀",
       "You are my beauty standards! 🥺",
       "My first and last thought is only you 😭",
       "Shweta, please? 🤧",
